@@ -15,12 +15,12 @@ export const Footer = () => {
           {/* Logo */}
           <div className="flex items-center">
             <Image
-              src="/logo.png"
+              src="/images/logo-velasco.png"
               alt="Velasco Abogados"
               width={160}
               height={50}
               className="object-contain"
-            />
+          />
           </div>
 
           {/* Navigation */}

@@ -7,7 +7,55 @@ export default function SimulatorSection() {
   const [months, setMonths] = useState(12);
   const [currency, setCurrency] = useState<"PEN" | "USD">("PEN");
 
-  const rate = 0.18; // 18% anual estimado
+  const getRate = () => {
+    if (currency === "PEN") {
+      if (amount >= 5000 && amount <= 9999) {
+        if (months === 6) return 0.08;
+        if (months === 12) return 0.18;
+        if (months === 24) return 0.19;
+        if (months === 36) return 0.20;
+      }
+      if (amount >= 10000 && amount <= 29999) {
+        if (months === 6) return 0.08;
+        if (months === 12) return 0.20;
+        if (months === 24) return 0.21;
+        if (months === 36) return 0.22;
+      }
+      if (amount >= 30000 && amount <= 99999) {
+        if (months === 12) return 0.21;
+        if (months === 24) return 0.22;
+        if (months === 36) return 0.23;
+      }
+      if (amount >= 100000) {
+        if (months === 12) return 0.22;
+        if (months === 24) return 0.23;
+        if (months === 36) return 0.25;
+      }
+    }
+
+    if (currency === "USD") {
+      if (amount >= 1000 && amount <= 9999) {
+        if (months === 6) return 0.07;
+        if (months === 12) return 0.16;
+        if (months === 24) return 0.17;
+        if (months === 36) return 0.18;
+      }
+      if (amount >= 10000 && amount <= 49999) {
+        if (months === 12) return 0.17;
+        if (months === 24) return 0.18;
+        if (months === 36) return 0.19;
+      }
+      if (amount >= 50000) {
+        if (months === 12) return 0.18;
+        if (months === 24) return 0.19;
+        if (months === 36) return 0.20;
+      }
+    }
+
+    return 0;
+  };
+
+  const rate = getRate();
   const profit = Math.round(amount * rate);
   const total = amount + profit;
 
@@ -132,7 +180,9 @@ export default function SimulatorSection() {
           <div className="mt-8 bg-white/5 p-6 rounded-xl text-sm">
             <div className="flex justify-between">
               <span>Tasa anual estimada</span>
-              <span className="text-blue-400 font-semibold">18%</span>
+              <span className="text-blue-400 font-semibold">
+                {(rate * 100).toFixed(0)}%
+              </span>
             </div>
 
             <div className="flex justify-between mt-3">

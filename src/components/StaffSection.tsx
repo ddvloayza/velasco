@@ -4,29 +4,29 @@ import Image from "next/image";
 
 export default function StaffSection() {
   const staff = [
+      {
+      name: "Yuri Velasco Velezmoro",
+      role: "--- In memoriam ---",
+      description: "Socio Fundador y Abogado",
+      image: "/images/staff/yuri-velasco.png",
+    },
     {
       name: "Iván Velasco Velezmoro",
-      role: "Socio Fundador y Abogado",
+      role: "",
       description:
         "Socio Fundador y Abogado principal del Estudio. Con 33 años de experiencia como Abogado colegiado, y 35 años trabajando en el área legal.",
       image: "/images/staff/ivan-velasco.png",
     },
     {
-      name: "Yuri Velasco Velezmoro",
-      role: "Socio Fundador y Abogado",
-      description: "Socio Fundador y Abogado",
-      image: "/images/staff/yuri-velasco.png",
-    },
-    {
       name: "Gerardo Widawsky Kleinberg",
-      role: "Abogado penalista",
+      role: "",
       description:
         "Abogado penalista con 35 años de experiencia en casos de Derecho Penal.",
       image: "/images/staff/gerardo-widauski.png",
     },
     {
       name: "José León Alva",
-      role: "Abogado",
+      role: "",
       description:
         "Abogado procesalista, con 15 años de experiencia en el rubro.",
       image: "/images/staff/jose-leon.png",
@@ -60,14 +60,20 @@ export default function StaffSection() {
               </div>
 
               {/* Name */}
-              <h3 className="mt-6 text-lg font-semibold text-blue-900 leading-snug">
+              <h3 className="mt-6 text-lg font-bold text-blue-900 leading-snug">
                 {member.name}
               </h3>
 
-              {/* Role */}
-              {/*<p className="mt-2 text-sm text-gray-600">*/}
-              {/*  {member.role}*/}
-              {/*</p>*/}
+              {/* Role (if exists) */}
+              {member.role && (
+                <p className="mt-3 text-sm text-gray-600">
+                  {member.role.includes("memoriam") ? (
+                    <span className="italic text-gray-500">— In memoriam —</span>
+                  ) : (
+                    member.role
+                  )}
+                </p>
+              )}
 
               {/* Description */}
               <p className="mt-3 text-sm text-gray-500 leading-relaxed">
