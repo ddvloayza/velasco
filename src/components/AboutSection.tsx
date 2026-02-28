@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function AboutSection() {
   return (
-    <section className="bg-[#F4F4F4] py-24">
+    <section className="bg-[#F4F4F4] py-24" id="nosotros">
       <div className="max-w-7xl mx-auto px-8">
 
         {/* Top Grid */}

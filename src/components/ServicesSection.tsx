@@ -72,7 +72,7 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section className="bg-gradient-to-r from-[#020617] to-[#08123A] py-28 text-white">
+    <section className="bg-gradient-to-r from-[#020617] to-[#08123A] py-28 text-white" id="servicios">
       <div className="max-w-7xl mx-auto px-8 text-center">
 
         {/* Badge */}

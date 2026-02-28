@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center">
+    <section className="relative min-h-screen flex items-center" id="hero">
 
       {/* Background Image */}
       <div
@@ -38,14 +38,14 @@ export default function Hero() {
           {/* Buttons */}
           <div className="mt-8 flex gap-4">
             <Link
-              href="#"
+              href="#contacto"
               className="px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 transition font-medium"
             >
               Contáctanos
             </Link>
 
             <Link
-              href="#"
+              href="#inversiones"
               className="px-6 py-3 rounded-full bg-blue-500/80 hover:bg-blue-600 transition font-medium"
             >
               Inversiones

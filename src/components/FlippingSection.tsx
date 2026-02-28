@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function FlippingSection() {
   return (
-    <section className="bg-[#F4F4F4] py-28">
+    <section className="bg-[#F4F4F4] py-28" id="inversiones">
       <div className="max-w-7xl mx-auto px-8 text-center">
 
         {/* Top Label */}

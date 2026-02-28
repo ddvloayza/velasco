@@ -1,10 +1,47 @@
 "use client";
 
 import { Phone, Mail, MapPin } from "lucide-react";
+import { useRef, useState } from "react";
+
 
 export default function ContactSection() {
+
+  const formRef = useRef<HTMLFormElement>(null);
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error("Error al enviar");
+
+      setSuccess(true);
+      formRef.current?.reset();
+
+      setTimeout(() => setSuccess(false), 4000);
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <section className="bg-[#F4F4F4] py-16">
+    <section className="bg-[#F4F4F4] py-16" id="contacto">
       <div className="max-w-6xl mx-auto px-8">
 
         <div className="rounded-2xl overflow-hidden border-2 border-blue-500 shadow-xl grid md:grid-cols-2">
@@ -43,7 +80,7 @@ export default function ContactSection() {
           {/* RIGHT SIDE */}
           <div className="bg-white p-12">
 
-            <form className="space-y-2">
+            <form ref={formRef} className="space-y-2" onSubmit={handleSubmit}>
 
               <div>
                 <label className="text-sm font-medium text-gray-700">
@@ -51,8 +88,9 @@ export default function ContactSection() {
                 </label>
                 <input
                   type="text"
+                  name="name"
                   placeholder="Tu nombre"
-                  className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -62,8 +100,9 @@ export default function ContactSection() {
                 </label>
                 <input
                   type="email"
+                  name="email"
                   placeholder="Tucorreo@email.com"
-                  className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -73,8 +112,9 @@ export default function ContactSection() {
                 </label>
                 <input
                   type="text"
+                  name="phone"
                   placeholder="+51 ..."
-                  className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -84,8 +124,9 @@ export default function ContactSection() {
                 </label>
                 <textarea
                   rows={4}
+                  name="message"
                   placeholder="Mensaje"
-                  className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -95,6 +136,12 @@ export default function ContactSection() {
               >
                 Enviar
               </button>
+
+              {success && (
+                <p className="text-green-600 text-sm mt-3">
+                  Mensaje enviado correctamente ✔
+                </p>
+              )}
 
             </form>
 

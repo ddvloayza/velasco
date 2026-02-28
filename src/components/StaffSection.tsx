@@ -34,7 +34,7 @@ export default function StaffSection() {
   ];
 
   return (
-    <section className="bg-[#FFFFFF] py-28">
+    <section className="bg-[#FFFFFF] py-28" id="staff">
       <div className="max-w-7xl mx-auto px-8 text-center">
 
         {/* Title */}
