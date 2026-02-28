@@ -21,7 +21,7 @@ export default function StaffSection() {
       name: "Gerardo Widawsky Kleinberg",
       role: "",
       description:
-        "Abogado penalista con 35 años de experiencia en casos de Derecho Penal.",
+        "Abogado especializado en derecho penal y constitucional con 35 años de experiencia profesional.",
       image: "/images/staff/gerardo-widauski.png",
     },
     {
