@@ -59,6 +59,21 @@ export default function SimulatorSection() {
   const profit = Math.round(amount * rate);
   const total = amount + profit;
 
+  const handleWhatsApp = () => {
+    const symbol = currency === "PEN" ? "S/" : "$";
+
+    const message = `Hola, quiero información sobre la inversión.%0A
+Monto: ${symbol}${amount.toLocaleString()}%0A
+Plazo: ${months} meses%0A
+Tasa estimada: ${(rate * 100).toFixed(0)}%%0A
+Ganancia estimada: ${symbol}${profit.toLocaleString()}%0A
+Retorno total: ${symbol}${total.toLocaleString()}`;
+
+    const url = `https://wa.me/51965299977?text=${message}`;
+
+    window.open(url, "_blank");
+  };
+
   return (
     <section className="bg-gradient-to-r from-[#1E3A8A] to-[#0F2B5C] py-28 text-white">
       <div className="max-w-7xl mx-auto px-8 grid md:grid-cols-2 gap-20 items-center">
@@ -202,7 +217,10 @@ export default function SimulatorSection() {
             </div>
           </div>
 
-          <button className="mt-8 w-full bg-blue-600 hover:bg-blue-700 transition py-3 rounded-lg font-medium">
+          <button
+            onClick={handleWhatsApp}
+            className="mt-8 w-full bg-blue-600 hover:bg-blue-700 transition py-3 rounded-lg font-medium"
+          >
             Quiero contactarme con un asesor
           </button>
 
