@@ -56,7 +56,8 @@ export default function SimulatorSection() {
   };
 
   const rate = getRate();
-  const profit = Math.round(amount * rate);
+  const periodMultiplier = months / 12;
+  const profit = Math.round(amount * rate * periodMultiplier);
   const total = amount + profit;
 
   const handleWhatsApp = () => {
